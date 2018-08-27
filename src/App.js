@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Link, Route, Switch } from 'react-router-dom'
 
-import SectionOne from './SectionOne'
+import SectionOne, { ROUTE_PATTERN as SectionOneRoute } from './SectionOne'
 import SectionTwo from './SectionTwo'
-import SectionThree from './SectionThree'
+import SectionThree, { ROUTE_PATTERN as SectionThreeRoute } from './SectionThree'
 
 class App extends Component {
   render() {
@@ -20,9 +20,9 @@ class App extends Component {
         </ul>
 
         <Switch>
-          <Route path="/section-one/:step?" component={SectionOne} />
-          <Route path="/section-two/:step?" component={SectionTwo} />
-          <Route path="/section-three/:step?" component={SectionThree} />
+          <Route path={SectionOneRoute} component={SectionOne} />
+          <Route path="/section-two" component={SectionTwo} />
+          <Route path={SectionThreeRoute} component={SectionThree} />
         </Switch>
       </div>
     )

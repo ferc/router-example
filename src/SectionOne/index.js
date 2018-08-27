@@ -5,7 +5,10 @@ import StepOne from './StepOne'
 import StepTwo from './StepTwo'
 import StepThree from './StepThree'
 
-const INITIAL_STEP = 'step-one'
+export const INITIAL_STEP = 'step-one'
+export const SECTION_NAME = 'section-one'
+export const ROUTE_PATTERN = `/${SECTION_NAME}/:step?`
+export const START_ROUTE = `/${SECTION_NAME}/${INITIAL_STEP}`
 
 class SectionOne extends Component {
   state = {
@@ -20,10 +23,23 @@ class SectionOne extends Component {
 
   getStepView = () => {
     const { redirectToStart } = this.state
-    const { step } = this.props.match.params
+    const {
+      location: {
+        state: { sectionThreeData } = {}
+      },
+      match: {
+        params: { step }
+      }
+    } = this.props
 
-    if (step !== INITIAL_STEP && redirectToStart) {
-      return <Redirect to="/section-one/step-one" />
+    const validStep = step === INITIAL_STEP ||
+      (
+        step === 'step-three' &&
+        sectionThreeData
+      )
+
+    if (!validStep && redirectToStart) {
+      return <Redirect to={START_ROUTE} />
     }
 
     switch(step) {
@@ -37,7 +53,7 @@ class SectionOne extends Component {
         return <StepThree />
 
       default:
-        return <h1>Redirect</h1>
+        return <Redirect to={START_ROUTE} />
     }
   }
 

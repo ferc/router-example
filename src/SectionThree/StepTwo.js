@@ -8,9 +8,8 @@ class StepTwo extends Component {
         <h3>Step Two</h3>
 
         <ul>
-          <li><Link to="/section-one/step-one">Previous</Link></li>
-          <li><Link to="/section-three/step-one">Go To Section Three</Link></li>
-          <li><Link to="/section-one/step-three">Next</Link></li>
+          <li><Link to="/section-three/step-one">Previous</Link></li>
+          <li><Link to="/section-three/step-three">Next</Link></li>
         </ul>
       </div>
     )
