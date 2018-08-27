@@ -20,9 +20,9 @@ class App extends Component {
         </ul>
 
         <Switch>
-          <Route path="/section-one/:section?" component={SectionOne} />
-          <Route path="/section-two/:section?" component={SectionTwo} />
-          <Route path="/section-three/:section?" component={SectionThree} />
+          <Route path="/section-one/:step?" component={SectionOne} />
+          <Route path="/section-two/:step?" component={SectionTwo} />
+          <Route path="/section-three/:step?" component={SectionThree} />
         </Switch>
       </div>
     )

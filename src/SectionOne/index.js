@@ -1,14 +1,32 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 
 import StepOne from './StepOne'
 import StepTwo from './StepTwo'
 import StepThree from './StepThree'
 
-class SectionOne extends Component {
-  getStep = () => {
-    const { section } = this.props.match.params
+const INITIAL_STEP = 'step-one'
 
-    switch(section) {
+class SectionOne extends Component {
+  state = {
+    redirectToStart: true
+  }
+
+  componentDidMount() {
+    this.setState({
+      redirectToStart: false
+    })
+  }
+
+  getStepView = () => {
+    const { redirectToStart } = this.state
+    const { step } = this.props.match.params
+
+    if (step !== INITIAL_STEP && redirectToStart) {
+      return <Redirect to="/section-one/step-one" />
+    }
+
+    switch(step) {
       case 'step-one':
         return <StepOne />
 
@@ -19,18 +37,18 @@ class SectionOne extends Component {
         return <StepThree />
 
       default:
-        return <h1>Invalid Step</h1>
+        return <h1>Redirect</h1>
     }
   }
 
   render() {
-    const step = this.getStep()
+    const stepView = this.getStepView()
 
     return (
       <div>
-        <h1>Section One</h1>
+        <h2>Section One</h2>
 
-        {step}
+        {stepView}
       </div>
     )
   }
